@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 109466680126285036}
   - component: {fileID: -680307192713055623}
   m_Layer: 0
-  m_Name: road 2 2
+  m_Name: road 2 3
   m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -223,22 +223,22 @@ PrefabInstance:
     - target: {fileID: 1790789897546112893, guid: b42239698770c6941b650d680c589a1b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1790789897546112893, guid: b42239698770c6941b650d680c589a1b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1790789897546112893, guid: b42239698770c6941b650d680c589a1b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.5
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: 1790789897546112893, guid: b42239698770c6941b650d680c589a1b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1790789897546112893, guid: b42239698770c6941b650d680c589a1b,
         type: 3}
@@ -248,7 +248,7 @@ PrefabInstance:
     - target: {fileID: 1790789897546112893, guid: b42239698770c6941b650d680c589a1b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -90.00001
+      value: -90
       objectReference: {fileID: 0}
     - target: {fileID: 1790789897546112893, guid: b42239698770c6941b650d680c589a1b,
         type: 3}
@@ -258,7 +258,7 @@ PrefabInstance:
     - target: {fileID: 1790789897546112893, guid: b42239698770c6941b650d680c589a1b,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 90
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: 7390691115613149420, guid: b42239698770c6941b650d680c589a1b,
         type: 3}
