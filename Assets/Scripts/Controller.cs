@@ -11,6 +11,8 @@ public class Controller : MonoBehaviour
     public float RotationSpeed = 5f;
     Rigidbody rb;
 
+    int laps;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,17 +29,30 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ForwardVelocity += accelerationRate * Time.deltaTime;
-        ForwardVelocity = Mathf.Min(ForwardVelocity, MaxSpeed);
+        if (Input.GetKey(KeyCode.W))
+        {
+            ForwardVelocity += accelerationRate * Time.deltaTime;
+            ForwardVelocity = Mathf.Min(ForwardVelocity, MaxSpeed);
+        }
+        else if(ForwardVelocity > 0)
+        {
+            ForwardVelocity -= accelerationRate * Time.deltaTime;
+        }
+        if(ForwardVelocity <= 0.01f)
+        {
+            ForwardVelocity = 0f;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.E))
+       
+
+        if (Input.GetKey(KeyCode.D))
         {
             transform.eulerAngles += new Vector3(0, RotationSpeed * Time.deltaTime, 0);
         }
-        else if (Input.GetKey(KeyCode.Q))
+        else if (Input.GetKey(KeyCode.A))
         {
             transform.eulerAngles -= new Vector3(0, RotationSpeed * Time.deltaTime, 0);
         }
@@ -45,7 +60,13 @@ public class Controller : MonoBehaviour
 
     private void LateUpdate()
     {
-        rb.velocity = -transform.forward * ForwardVelocity;
+        rb.velocity = transform.forward * ForwardVelocity;
 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        laps += 1;
+        Debug.Log(laps);
     }
 }

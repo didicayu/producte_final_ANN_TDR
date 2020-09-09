@@ -20,29 +20,33 @@ public class RoadEditor : MonoBehaviour
 
     int rotationRoad;
 
+
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
 
-    }
 
-    private void Awake()
-    {
-        //agafa les posicions inicials de les carreteres fantasma
         StartingPos = new Vector3[PlaceHolders.Length];
 
         for (int i = 0; i < PlaceHolders.Length; i++)
         {
             StartingPos[i] = PlaceHolders[i].transform.position;
         }
+        //agafa les posicions inicials de les carreteres fantasma
+    }
+
+    private void Awake()
+    {
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        //calcular la posició a la que es ficaran les carreteres
         GhostRoad();
+        //calcular la posició a la que es ficaran les carreteres
+        
 
 
         //selecciona el nombre del objecte si existeix

@@ -37,4 +37,24 @@ public static class SaveSystem
             return null;
         }
     }
+
+    public static TrackData LoadTrackWithName(string RoadName)
+    {
+        string path = Application.persistentDataPath + "/" + RoadName + ".didac";
+        if (File.Exists(path))
+        {
+            BinaryFormatter formatter = new BinaryFormatter();
+            FileStream stream = new FileStream(path, FileMode.Open);
+
+            TrackData data = formatter.Deserialize(stream) as TrackData;
+            stream.Close();
+
+            return data;
+        }
+        else
+        {
+            Debug.LogError("no es pot trobar l'arxiu a: " + path);
+            return null;
+        }
+    }
 }
