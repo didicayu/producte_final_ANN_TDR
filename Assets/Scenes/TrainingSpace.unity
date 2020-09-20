@@ -281,10 +281,11 @@ MonoBehaviour:
   m_SensorName: RayPerceptionSensor
   m_DetectableTags:
   - Wall
+  - Untagged
   m_RaysPerDirection: 3
   m_MaxRayDegrees: 54
   m_SphereCastRadius: 0.5
-  m_RayLength: 244
+  m_RayLength: 461
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
@@ -306,17 +307,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BrainParameters:
-    VectorObservationSize: 1
-    NumStackedVectorObservations: 1
-    VectorActionSize: 0200000002000000
+    VectorObservationSize: 4
+    NumStackedVectorObservations: 4
+    VectorActionSize: 0200000003000000
     VectorActionDescriptions: []
     VectorActionSpaceType: 0
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: c55ce7d63a2aec04e9635d176d360189, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
-  m_BehaviorName: Controller
+  m_BehaviorName: CarBrain
   TeamId: 0
   m_UseChildSensors: 1
+--- !u!114 &273896232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273896226}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DecisionPeriod: 1
+  TakeActionsBetweenDecisions: 1
 --- !u!1001 &332828415
 PrefabInstance:
   m_ObjectHideFlags: 0
