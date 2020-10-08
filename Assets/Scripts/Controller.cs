@@ -182,7 +182,7 @@ public class Controller : Agent
         }
         else if (directionInt > 0)
         {
-            AddReward(0.1f);
+            AddReward(1f);
             AddReward((rb.velocity.magnitude / 500f));
             //Debug.Log((rb.velocity.magnitude / 500f));
         }
@@ -198,10 +198,16 @@ public class Controller : Agent
 
     private void OnTriggerEnter(Collider other)
     {
+        
         laps += 1;
+        Debug.Log("Num of laps: " + laps + "!");
         if(laps > 1)
         {
             AddReward(laps * laps);
+        }
+        else
+        {
+            AddReward(2f);
         }
     }
 }
