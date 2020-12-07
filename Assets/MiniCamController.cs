@@ -33,12 +33,12 @@ public class MiniCamController : MonoBehaviour
         for (int i = 0; i < ParentObject.transform.childCount; i++)
         {
             sum += ParentObject.transform.GetChild(i).position;
-            float result = Mathf.Max(Mathf.Abs(ParentObject.transform.GetChild(i).position.z - transform.position.z), FurtherAway);
+            float result = Mathf.Max(Mathf.Abs(ParentObject.transform.GetChild(i).position.x), FurtherAway);
             FurtherAway = result;
         }
         sum = (sum / ParentObject.transform.childCount);
 
         transform.position = new Vector3(sum.x, transform.position.y, sum.z);
-        gameObject.GetComponent<Camera>().orthographicSize = FurtherAway - offset;
+        gameObject.GetComponent<Camera>().orthographicSize = FurtherAway;
     }
 }

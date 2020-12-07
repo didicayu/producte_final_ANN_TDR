@@ -20,7 +20,7 @@ public class Controller : Agent
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     public override void Initialize()
@@ -36,52 +36,60 @@ public class Controller : Agent
 
     public override void OnActionReceived(float[] vectorAction)
     {
-        
-        if(vectorAction[0] == 0)
+
+        if (vectorAction[0] == 0)
         {
-            ForwardVelocity -= DecelerationRate * Time.fixedDeltaTime;
-            ForwardVelocity = Mathf.Max(0, ForwardVelocity);
+            //ForwardVelocity -= DecelerationRate * Time.fixedDeltaTime;
+            //ForwardVelocity = Mathf.Max(0, ForwardVelocity);
+            ForwardVelocity = 0;
         }
-        if(vectorAction[0] == 1)
+        if (vectorAction[0] == 1)
         {
             ForwardVelocity += accelerationRate * Time.deltaTime;
             ForwardVelocity = Mathf.Min(ForwardVelocity, MaxSpeed);
         }
-        else if(ForwardVelocity > 0)
+        else if (ForwardVelocity > 0)
         {
-            ForwardVelocity -= accelerationRate * Time.fixedDeltaTime;
+            //ForwardVelocity -= accelerationRate * Time.fixedDeltaTime;
         }
         if (vectorAction[1] == 0)
         {
             //rotate to the right
-            transform.eulerAngles += new Vector3(0, RotationSpeed * Time.deltaTime, 0);
+            float rotation = 1 * RotationSpeed * 90f;
+            transform.Rotate(0f, rotation * Time.fixedDeltaTime, 0f);
+            //transform.eulerAngles += new Vector3(0, RotationSpeed * Time.deltaTime, 0);
 
         }
-        if(vectorAction[1] == 1)
+        if (vectorAction[1] == 1)
         {
             //rotate to the left
-            transform.eulerAngles -= new Vector3(0, RotationSpeed * Time.deltaTime, 0);
+            float rotation = -1 * RotationSpeed * 90f;
+            transform.Rotate(0f, rotation * Time.fixedDeltaTime, 0f);
+            //transform.eulerAngles -= new Vector3(0, RotationSpeed * Time.deltaTime, 0);
 
         }
-        if(vectorAction[1] == 2)
+        if (vectorAction[1] == 2)
         {
             rb.angularVelocity = Vector3.zero;
         }
 
-        
+
 
         int reward = AreWeLookingTheRightWay();
 
         var moveVec = transform.position - lastPos;
 
-        float angle = Vector3.Angle(moveVec, _track.up);
-
-        //float bonus = (1f - angle / 90f) * Time.fixedDeltaTime * vectorAction[0];
+        if(_track != null)
+        {
+            float angle = Vector3.Angle(moveVec, _track.up);
+        }
         
+        //float bonus = (1f - angle / 90f) * Time.fixedDeltaTime * vectorAction[0];
+
         AddReward(reward);
 
         score += reward;
-}
+    }
 
     public override void OnEpisodeBegin()
     {
@@ -100,7 +108,7 @@ public class Controller : Agent
         }
         else if (ForwardVelocity > 0)
         {
-            ForwardVelocity -= accelerationRate * Time.deltaTime;
+            //ForwardVelocity -= accelerationRate * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.S))
         {
@@ -118,19 +126,30 @@ public class Controller : Agent
         {
             actionsOut[1] = 2;
         }
+        //Debug.Log(actionsOut[0] + " " + actionsOut[1]);
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        float angle = Vector3.SignedAngle(_track.up, transform.forward, Vector3.up);
+        if(_track != null)
+        {
+            float angle = Vector3.SignedAngle(_track.up, transform.forward, Vector3.up);
 
 
-        //3 floats
-        sensor.AddObservation(rb.velocity);
+            //3 floats
+            sensor.AddObservation(rb.velocity);
 
 
-        //1float
-        sensor.AddObservation(angle / 180f);
+            //1float
+            sensor.AddObservation(angle / 180f);
+        }
+        else
+        {
+            //dona uns valors inicials zero mentre es carrega el nivell
+            sensor.AddObservation(Vector3.zero);
+            sensor.AddObservation(0f);
+        }
+       
 
     }
 
@@ -153,13 +172,13 @@ public class Controller : Agent
 
     void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.CompareTag("Untagged"))
+        if (coll.gameObject.CompareTag("Untagged") || coll.gameObject.CompareTag("Wall"))
         {
             SetReward(-1.0f);
             //Debug.Log(GetCumulativeReward());
-            
+
             EndEpisode();
-            
+
         }
 
     }
@@ -180,7 +199,7 @@ public class Controller : Agent
             {
                 lastPos = transform.position;
                 angle = Vector3.Angle(_track.up, newHit.position - _track.position);
-                
+
                 reward = (angle < 90f) ? 1 : -1;
             }
 
@@ -197,7 +216,7 @@ public class Controller : Agent
     private void LateUpdate()
     {
         rb.velocity = transform.forward * ForwardVelocity;
-        if(ForwardVelocity < 0.001)
+        if (ForwardVelocity < 0.001)
         {
             ForwardVelocity = 0;
         }
@@ -205,7 +224,7 @@ public class Controller : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        
-        
+
+
     }
 }

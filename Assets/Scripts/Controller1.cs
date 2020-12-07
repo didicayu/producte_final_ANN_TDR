@@ -105,7 +105,7 @@ public class Controller1 : Agent
 
     void OnCollisionEnter(Collision coll)
     {
-        if (coll.gameObject.CompareTag("Untagged"))
+        if (coll.gameObject.CompareTag("Untagged") || coll.gameObject.CompareTag("Wall"))
         {
             AddReward(-1f);
             //Debug.Log(GetCumulativeReward());

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class RoadEditor : MonoBehaviour
 {
@@ -10,13 +11,16 @@ public class RoadEditor : MonoBehaviour
     public GameObject[] roads;
     Camera cam;
 
-    int ObjNum = 0;
+    [HideInInspector]
+    public int ObjNum = 0;
 
     public string TrackName;
 
     Vector3 pos;
     Vector3 OldPos;
     Vector3[] StartingPos;
+
+    GameObject[] ro;
 
     int rotationRoad;
 
@@ -102,19 +106,18 @@ public class RoadEditor : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && RoadPresent() == false && !EventSystem.current.IsPointerOverGameObject())
         {
             if (RoadPresent() == false)
             {
-                SpawnObject(ObjNum);
+                SpawnObject(ObjNum);        
             }
         }
     }
 
     void SpawnObject(int ObjNum)
     {
-        GameObject[] ro = GameObject.FindGameObjectsWithTag("Road");
-
+        ro = GameObject.FindGameObjectsWithTag("Road");
         GameObject go = Instantiate(Objectes[ObjNum], pos, PlaceHolders[ObjNum].transform.rotation, ParentObject.transform);
 
         //preveu que apareguin dues carreteres al mateix lloc
@@ -126,6 +129,15 @@ public class RoadEditor : MonoBehaviour
             }
         }
         go.name = ObjNum.ToString();
+    }
+
+    public void DeleteAllRoads()
+    {
+        ro = GameObject.FindGameObjectsWithTag("Road");
+        for (int i = 0; i < ro.Length; i++)
+        {
+            Destroy(ro[i]);
+        }
     }
 
     //mire si hi ha una carretera i la destrueix

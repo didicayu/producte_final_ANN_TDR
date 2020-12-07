@@ -17,23 +17,26 @@ public class TrackSpawner1 : MonoBehaviour
     void Start()
     {
         //AgentCar.SetActive(true);
-        StartCoroutine(WaitXFrames());
+        StartCoroutine(WaitXFrames(1));
     }
-    IEnumerator WaitXFrames()
+    IEnumerator WaitXFrames(int NumOfFrames)
     {
-        yield return 0;
-
+        
+        yield return NumOfFrames;
         AgentCar.SetActive(true);
+
     }
 
     private void Awake()
     {
+        TrackName = PlayerPrefs.GetString("TrackName");
         ParentObject = gameObject;
         SpawnTrack();
         Transform three = gameObject.transform.Find("3");
-        
+
         AgentCar.transform.position = new Vector3(three.position.x, three.position.y + HeightOffset, three.position.z);
         AgentCar.transform.rotation = three.transform.rotation;
+        
     }
 
     // Update is called once per frame

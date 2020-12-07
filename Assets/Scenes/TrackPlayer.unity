@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 6c41f5fac9c3c20479cd6b733c667a24, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -170,12 +170,12 @@ MonoBehaviour:
   m_BrainParameters:
     VectorObservationSize: 4
     NumStackedVectorObservations: 4
-    VectorActionSize: 02000000
+    VectorActionSize: 0200000003000000
     VectorActionDescriptions: []
-    VectorActionSpaceType: 1
-  m_Model: {fileID: 5022602860645237092, guid: b426192e48bfc77458f93663179219a3, type: 3}
+    VectorActionSpaceType: 0
+  m_Model: {fileID: 5022602860645237092, guid: 93750628959c9784c9ac173b95d6bb71, type: 3}
   m_InferenceDevice: 0
-  m_BehaviorType: 0
+  m_BehaviorType: 2
   m_BehaviorName: CarBrain
   TeamId: 0
   m_UseChildSensors: 1
@@ -202,15 +202,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 273896226}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8bbd315e88c724c49bbc64b4db5d1ec8, type: 3}
+  m_Script: {fileID: 11500000, guid: b539020d01d48324a8fe535204b3c492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
   MaxStep: 0
-  speed: 10
-  torque: 2
+  MaxSpeed: 10
+  TimeZeroToMax: 0.5
+  RotationSpeed: 5
   score: 0
 --- !u!1 &312511431
 GameObject:
@@ -390,8 +391,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -90, y: -90}
-  m_SizeDelta: {x: 150, y: 150}
+  m_AnchoredPosition: {x: -154.44, y: -154.44}
+  m_SizeDelta: {x: 270, y: 270}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1014822453
 MonoBehaviour:
@@ -412,7 +413,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Texture: {fileID: 0}
+  m_Texture: {fileID: 8400000, guid: 3f06cf0fd7828fa4d95f63c393fdf4c9, type: 2}
   m_UVRect:
     serializedVersion: 2
     x: 0
@@ -437,7 +438,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1277855829}
   - component: {fileID: 1277855831}
-  - component: {fileID: 1277855830}
   - component: {fileID: 1277855832}
   m_Layer: 0
   m_Name: Camera
@@ -460,14 +460,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!81 &1277855830
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1277855828}
-  m_Enabled: 1
 --- !u!20 &1277855831
 Camera:
   m_ObjectHideFlags: 0
@@ -477,7 +469,7 @@ Camera:
   m_GameObject: {fileID: 1277855828}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -524,6 +516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentObject: {fileID: 312511431}
+  offset: 8
 --- !u!1 &1317249748
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,37 +767,37 @@ PrefabInstance:
     - target: {fileID: 8251012939826957668, guid: 986a194ae3138e2418c5576c7c2895c8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.38
+      value: 16.044
       objectReference: {fileID: 0}
     - target: {fileID: 8251012939826957668, guid: 986a194ae3138e2418c5576c7c2895c8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.14899999
+      value: -0.534
       objectReference: {fileID: 0}
     - target: {fileID: 8251012939826957668, guid: 986a194ae3138e2418c5576c7c2895c8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 8251012939826957668, guid: 986a194ae3138e2418c5576c7c2895c8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8251012939826957668, guid: 986a194ae3138e2418c5576c7c2895c8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.7071068
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8251012939826957668, guid: 986a194ae3138e2418c5576c7c2895c8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8251012939826957668, guid: 986a194ae3138e2418c5576c7c2895c8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8251012939826957668, guid: 986a194ae3138e2418c5576c7c2895c8,
         type: 3}
