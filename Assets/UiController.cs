@@ -9,6 +9,7 @@ using UnityEngine.SceneManagement;
 public class UiController : MonoBehaviour
 {
     string path;
+    int MaxDropDownBoxLength = 25;
 
     public Image[] ImgBoxes;
     public Sprite Selected;
@@ -34,15 +35,23 @@ public class UiController : MonoBehaviour
         
     }
 
-
     public void GetSavedFiles()
     {
+        string FileName1;
         m_DropDownOptions = new List<string>() {"Escolleix Circuit"};
         m_dropDown.ClearOptions();
 
         foreach (string file in Directory.GetFiles(path))
         {
-            m_DropDownOptions.Add(Path.GetFileNameWithoutExtension(file));
+            FileName1 = Path.GetFileNameWithoutExtension(file);
+            if (FileName1.Length > MaxDropDownBoxLength)
+            {
+                FileName1 = FileName1.Substring(0, MaxDropDownBoxLength);
+            }
+            if (Path.GetFileName(file).Contains(".didac"))
+            {
+                m_DropDownOptions.Add(FileName1);
+            }  
         }
         m_dropDown.AddOptions(m_DropDownOptions);
     }
@@ -50,7 +59,7 @@ public class UiController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(m_dropDown.gameObject.transform.childCount != 3)
+        if(m_dropDown.gameObject.transform.childCount != 3 && m_dropDown != null)
         {
             Toggle[] dropChild = m_dropDown.GetComponentsInChildren<Toggle>();
             dropChild[0].interactable = false;
@@ -107,6 +116,7 @@ public class UiController : MonoBehaviour
     public void Load(string TrackSaveName)
     {
         re.TrackName = TrackSaveName;
+        TmInput.text = TrackSaveName;
         re.LoadRoad();
     }
     public void HandleDropDown(int val)
