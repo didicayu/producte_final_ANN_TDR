@@ -205,9 +205,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b539020d01d48324a8fe535204b3c492, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
   MaxSpeed: 6
   TimeZeroToMax: 2.5
   RotationSpeed: 75
+  score: 0
 --- !u!54 &8251012939826957670
 Rigidbody:
   m_ObjectHideFlags: 0
